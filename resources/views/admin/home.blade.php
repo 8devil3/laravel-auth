@@ -16,6 +16,11 @@
 
                   {{ __('You are logged in!') }}
                </div>
+
+               <div class="card-footer">
+                  <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">List all posts</a>
+                  <a href="{{ route('admin.posts.create') }}" class="btn btn-success">+ Add post</a>
+               </div>
             </div>
       </div>
    </div>
