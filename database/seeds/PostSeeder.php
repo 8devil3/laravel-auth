@@ -18,16 +18,15 @@ class PostSeeder extends Seeder
 
       for ($i=0; $i<500; $i++) {
 
-         $title = $faker->words(rand(1,4), true);
+         $title = $faker->words(rand(1, 4), true);
 
          Post::create([
             'title' => $title,
-            'content' => $faker->paragraphs(rand(2,6)),
-            'author' => $faker->words(2,2),
+            'content' => $faker->paragraph(rand(2,6)),
+            'author' => $faker->words(rand(1, 3), true),
             'date' => $faker->date(),
             'slug' => Post::genSlug($title)
          ]);
       }
-
    }
 }
