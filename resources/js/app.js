@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: Axios } = require('axios');
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -30,3 +32,21 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+//autocompilazione slug nei nuovi post
+const inputSlug = document.querySelector('#input-slug');
+const inputTitle = document.querySelector('#input-title');
+
+if (inputSlug) {
+   inputTitle.addEventListener('focusout', function() {
+      const inputSlug = document.querySelector('#input-slug');
+      inputTitle.value;
+
+      Axios.post('/admin/slugger', {
+         string: inputTitle.value,
+      }).then(function (response) {
+         inputSlug.value = response.data.slug;
+      });
+   });
+}
