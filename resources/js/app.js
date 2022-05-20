@@ -50,3 +50,15 @@ if (inputSlug) {
       });
    });
 }
+
+
+
+//reset campi form
+const btnReset = document.querySelector('#btn-reset');
+const inputForm = document.querySelector('#input-form');
+
+if (btnReset) {
+   btnReset.addEventListener('click', function(){
+      inputForm.reset();
+   });
+}

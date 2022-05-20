@@ -4,7 +4,7 @@
 
 
 @section('content')
-<form method="POST" action="{{ route('admin.posts.store') }}">
+<form method="POST" action="{{ route('admin.posts.store') }}" id="input-form">
    @csrf
 
    <h1 class="mb-4">Add new post</h1>
@@ -53,7 +53,7 @@
 
    <button type="submit" class="btn btn-primary">Add</button>
 
-   <div class="btn btn-secondary" id="btn-add-reset">Clear fields</div>
+   <div class="btn btn-secondary" id="btn-reset">Clear fields</div>
 
    <a href="{{ route('admin.posts.index') }}" class="btn btn-link" id="btn-back">Back to all</a>
 

@@ -40142,6 +40142,16 @@ if (inputSlug) {
       inputSlug.value = response.data.slug;
     });
   });
+} //reset campi form
+
+
+var btnReset = document.querySelector('#btn-reset');
+var inputForm = document.querySelector('#input-form');
+
+if (btnReset) {
+  btnReset.addEventListener('click', function () {
+    inputForm.reset();
+  });
 }
 
 /***/ }),
