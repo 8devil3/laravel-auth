@@ -12,7 +12,8 @@ class Post extends Model
       'content',
       'author',
       'date',
-      'slug'
+      'slug',
+      'user_id'
    ];
 
    static public function genSlug($string)
@@ -32,5 +33,10 @@ class Post extends Model
    public function getRouteKeyName()
    {
       return 'slug';
+   }
+
+   public function user()
+   {
+      return $this->belongsTo('App\User');
    }
 }

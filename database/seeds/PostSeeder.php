@@ -26,7 +26,6 @@ class PostSeeder extends Seeder
          Post::create([
             'title' => $title,
             'content' => $faker->paragraph(rand(2,6)),
-            'author' => $faker->words(rand(1, 3), true),
             'date' => $faker->date(),
             'slug' => Post::genSlug($title),
             'user_id' => User::inRandomOrder()->first()->id

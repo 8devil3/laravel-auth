@@ -25,11 +25,12 @@ Route::middleware('auth')
       ->name('admin.')
       ->prefix('admin')
       ->group(function () {
-            Route::get('/', 'HomeController@index')->name('home');
+            Route::get('/', 'DashboardController@index')->name('dashboard');
             Route::post('/slugger', 'HomeController@slugger')->name('slugger');
             Route::resource('/posts', 'PostController');
       });
 
+Route::get('/', 'LandingController@index')->name('guestsHome');
 
 Route::get('{any?}', function() {
    return view('guests.landing');

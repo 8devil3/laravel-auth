@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
    public function __construct()
    {
@@ -15,7 +15,7 @@ class HomeController extends Controller
 
    public function index()
    {
-      return view('admin.home');
+      return view('admin.dashboard');
    }
 
 

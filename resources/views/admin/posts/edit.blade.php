@@ -20,15 +20,6 @@
    </div>
 
    <div class="mb-3">
-      <label for="author" class="form-label">Author</label>
-      <input type="text" class="form-control @error('author') is-invalid @enderror" name="author" aria-describedby="author" value="{{ old('author', $post->author) }}">
-
-      @error('author')
-         <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-   </div>
-
-   <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
       <input type="text" class="form-control @error('slug') is-invalid @enderror" id="input-slug" name="slug" aria-describedby="slug" value="{{ old('slug', $post->slug) }}">
 

@@ -17,7 +17,6 @@ class CreatePostTable extends Migration
          $table->id();
          $table->string('title', 255);
          $table->text('content');
-         $table->string('author', 255);
          $table->datetime('date');
          $table->string('slug', 255);
          $table->foreignId('user_id')->constrained();

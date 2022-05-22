@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +16,9 @@ class PostController extends Controller
     */
    public function index()
    {
-      $posts = Post::orderBy('date', 'desc')->paginate(64);
+      $posts = Post::where('user_id', Auth::user()->id)
+                     ->orderBy('date', 'desc')
+                     ->paginate(20);
       return view('admin.posts.index', compact('posts'));
    }
 
@@ -37,8 +40,13 @@ class PostController extends Controller
     */
    public function store(Request $request)
    {
-      $newPost = Post::create($request->all());
-      return redirect()->route('admin.posts.show', $newPost->slug);
+      $formData = $request->all() + [
+         'user_id' => Auth::user()->id
+      ];
+
+      $post = Post::create($formData);
+
+      return redirect()->route('admin.posts.show', $post->slug);
    }
 
    /**
@@ -60,6 +68,8 @@ class PostController extends Controller
     */
    public function edit(Post $post)
    {
+      //per evitare modifiche non autorizzate di utenti esterni
+      if (Auth::user()->id !== $post->user_id) abort(403);
       return view('admin.posts.edit', compact('post'));
    }
 
@@ -84,7 +94,11 @@ class PostController extends Controller
     */
    public function destroy(Post $post)
    {
+      //per evitare modifiche non autorizzate di utenti esterni
+      if (Auth::user()->id !== $post->user_id) abort(403);
+
       $post->delete();
+
       return redirect()->route('admin.posts.index');
    }
 }
