@@ -13,15 +13,16 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 255);
-            $table->text('content');
-            $table->string('author', 255);
-            $table->datetime('date');
-            $table->string('slug', 255);
-            $table->timestamps();
-        });
+      Schema::create('posts', function (Blueprint $table) {
+         $table->id();
+         $table->string('title', 255);
+         $table->text('content');
+         $table->string('author', 255);
+         $table->datetime('date');
+         $table->string('slug', 255);
+         $table->foreignId('user_id')->constrained();
+         $table->timestamps();
+      });
     }
 
     /**
