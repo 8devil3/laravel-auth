@@ -22,13 +22,39 @@
                   <td>{{ substr($post->content, 0, 64) }}...</td>
                   <td>
                      <a href="{{ route('admin.posts.show', $post->slug) }}" class="btn btn-primary">View</a>
-                     <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-warning">Edit</a>
-                     <a href="{{ route('admin.posts.destroy', $post->slug) }}" class="btn btn-danger">Delete</a>
+                     <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-warning mx-2">Edit</a>
+
+                     <!-- Popup Trigger -->
+                     <button type="button" data-baseurl="{{ route('admin.posts.index') }}" data-id="{{ $post->slug }}" class="btn btn-danger btn-del" data-bs-toggle="modal" data-bs-target="#delPopup">Delete</button>
+                     <!-- / -->
                   </td>
                </tr>
             @endforeach
          </tbody>
       </table>
       {{ $posts->links() }}
+   </div>
+
+   <!-- Deletion popup -->
+   <div class="modal fade" id="delPopup" tabindex="-1" aria-labelledby="delPopup" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="delPopuplLabel">Confirm deletion</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                  Do you really want to delete this post?
+            </div>
+            <div class="modal-footer">
+               <form class="d-inline-block" method="POST" id="indexForm">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" id="btnDel">Yes, delete</button>
+               </form>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancel</button>
+            </div>
+         </div>
+      </div>
    </div>
 @endsection
