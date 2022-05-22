@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
-use App\UserInfo;
+use App\User;
 
-class UserInfoSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,11 +19,11 @@ class UserInfoSeeder extends Seeder
 
       for ($i=0; $i<15; $i++) {
 
-         UserInfo::create([
-            'city' => $faker->state(),
-            'address' => $faker->address(),
-            'phone' => $faker->phoneNumber(),
-            'user_id' => rand(1,15)
+         $name = $faker->firstName();
+         User::create([
+            'name' => $name,
+            'email' => strtolower($name) . '@' . $faker->domainName(),
+            'password' => Hash::make('qwerty')
          ]);
       }
     }
