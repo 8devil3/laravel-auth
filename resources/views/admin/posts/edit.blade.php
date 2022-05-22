@@ -6,6 +6,7 @@
 @section('content')
 <form method="POST" action="{{ route('admin.posts.update', $post->slug) }}" id="input-form">
    @csrf
+   @method('PUT')
 
    <h1 class="mb-4">Edit post</h1>
 

@@ -62,3 +62,14 @@ if (btnReset) {
       inputForm.reset();
    });
 }
+
+
+//eliminazione da pagina index
+const btnDel = document.querySelectorAll('.btn-del');
+const indexForm = document.querySelector('#indexForm');
+
+btnDel.forEach(btn => {
+   btn.addEventListener('click', function(){
+      indexForm.action = this.dataset.baseurl + '/' + this.dataset.slug
+   });
+});
