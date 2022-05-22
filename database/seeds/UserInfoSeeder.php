@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
 use App\UserInfo;
+use App\User;
 
 class UserInfoSeeder extends Seeder
 {
@@ -16,13 +17,14 @@ class UserInfoSeeder extends Seeder
     {
       $faker = FakerFactory::create('it_IT');
 
-      for ($i=0; $i<15; $i++) {
+      $users = User::all();
 
+      foreach ($users as $user) {
          UserInfo::create([
             'city' => $faker->state(),
             'address' => $faker->address(),
             'phone' => $faker->phoneNumber(),
-            'user_id' => rand(1,15)
+            'user_id' => $user->id
          ]);
       }
     }

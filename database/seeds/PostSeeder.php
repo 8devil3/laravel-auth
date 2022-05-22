@@ -2,8 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use App\Post;
+use App\User;
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
+// use Illuminate\Foundation\Auth\User;
+
 
 class PostSeeder extends Seeder
 {
@@ -26,7 +29,7 @@ class PostSeeder extends Seeder
             'author' => $faker->words(rand(1, 3), true),
             'date' => $faker->date(),
             'slug' => Post::genSlug($title),
-            'user_id' => rand(1,15)
+            'user_id' => User::inRandomOrder()->first()->id
          ]);
       }
    }
