@@ -30,6 +30,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <p>Default password FakerPHP users: <em>qwerty</em></p>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
